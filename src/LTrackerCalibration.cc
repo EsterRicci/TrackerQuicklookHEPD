@@ -10,17 +10,17 @@ void LTrackerCalibration::Add(const LTrackerCalibrationSlot *lcal) {
 }
 
 LTrackerCalibration::LTrackerCalibration() {
-  RunId=-99999;
-  nSlots=0;
-  InitialTargetRun=-99999;
-  FinalTargetRun=-99999;
+  RunId = -99999;
+  nSlots = 0;
+  InitialTargetRun = -99999;
+  FinalTargetRun = -99999;
 }
 
 LTrackerCalibration::LTrackerCalibration(const int RunIdINP,  const int InitialTargetRunINP, const int FinalTargetRunINP) {
-  RunId=RunIdINP;
-  nSlots=0;
-  InitialTargetRun=InitialTargetRunINP;
-  FinalTargetRun=FinalTargetRunINP;
+  RunId = RunIdINP;
+  nSlots = 0;
+  InitialTargetRun = InitialTargetRunINP;
+  FinalTargetRun = FinalTargetRunINP;
 }
 
 void LTrackerCalibration::Write(const char *fileOut) {
