@@ -346,7 +346,7 @@ LTrackerCalibration* LTrackerCalibrationManager::CreateTrackerCalibration() {
 		<< std::endl;
       return 0;
    }
-   int RunId = calRunFile->GetRunId();
+   int RunId = calRunFile->GetRunID(0);
   
    if(InitialTargetRun==-1 || FinalTargetRun==-1) {
       std::cerr << "Warning! Target run interval of current calibration not defined."

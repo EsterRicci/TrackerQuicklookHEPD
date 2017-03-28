@@ -27,12 +27,12 @@
 
 
 
-void QuickLook(std::string namefile){
+int TrackerQuickLook(std::string namefile){
   gROOT->Reset();
   gDirectory->GetList()->Delete();
   gStyle->SetPalette(1);
 
-  std::cout << "NAMEFILE = " << namefile << std::endl;
+  std::cout << "Root file = " << namefile << std::endl;
 
   TSystem filename_nopath;
   const char * nopath = filename_nopath.BaseName((const char*)namefile.c_str());
@@ -53,6 +53,17 @@ void QuickLook(std::string namefile){
 
   TH2D *temp_map[N_SIDES][N_LADDER];
   TH2D *gaus_map[N_SIDES][N_LADDER];
+
+  LEvRec0File input(namefile.c_str());
+  LEvRec0 ev;
+  LEvRec0Md metaData;
+
+  input.SetTheEventPointer(ev);
+  input.SetTmdPointer(metaData);
+  input.GetEntry(0);
+
+  if (!ev.IsVirgin())
+     return -1;
   
   for(int side=0;side<N_SIDES;++side){
     char plan=(side ? 'n' : 'p');
@@ -87,12 +98,7 @@ void QuickLook(std::string namefile){
 	VA_CHAN,0,VA_CHAN,SIDE_VA,0,SIDE_VA);
     }
   }
-  LEvRec0File input(namefile.c_str());
-  LEvRec0 ev;
-  LEvRec0Md metaData;
   
-  input.SetTheEventPointer(ev);
-  input.SetTmdPointer(metaData);
   const int MAXEVENTS = input.GetEntries();
   int N_PKG = MAXEVENTS/NCALIBEVENTS_QL;
 
@@ -239,4 +245,5 @@ void QuickLook(std::string namefile){
   drawing12_2D(gaus_map[0],gaus_map[1])->Print(outname,"pdf");
   output->Print(outnameEnd,"pdf");
 
+  return 0;
 }

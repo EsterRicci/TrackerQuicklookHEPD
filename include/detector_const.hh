@@ -14,6 +14,9 @@ const int N_VA=NCHAN/VA_CHAN;
 const int SIDE_VA=6;
 const int LADDER_VA=SIDE_VA*2;
 
+const int PMT_RATE_METER_SIZE= 65;
+const int EASIROC_CONF= 120;
+
 const int N_SIDES=2;
 const int N_LADDER=6;
 const int LADDER_BIN=NCHAN/N_LADDER;
