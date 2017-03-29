@@ -27,7 +27,8 @@ cd $1
 
 NAME=$(ls *.root | sort -V | head -1)
 #OUTDIR="${NAME%.root}"
-MERGEDFILE="${NAME%Channel*}"
+MERGEDFILE="${NAME%???????????}"
+#MERGEDFILE="${NAME%Channel*}"
 MERGEDFILE=$MERGEDFILE$EXT
 XSLPATH=$2
 
