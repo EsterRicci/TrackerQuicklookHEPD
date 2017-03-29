@@ -98,10 +98,10 @@ int main(int argc, char **argv){
 
 void PrintHelp(void)
 {
-   std::cout << "\nUsage: ./QuickLook <root file>  -x <xsl folder>\n" << std::endl;
+   std::cout << "\nUsage: ./QuickLook <root file directory>  -x <xsl folder>\n" << std::endl;
    std::cout <<  "\t -h or --help print this help and exit \n" << std::endl;
    std::cout << "\t -x <path> set the path to xsl template files [default ./] "
 	     << std::endl;
-   std::cout << "\t -o <path> set the path for the output files [default ./]" << std::endl;
+   //std::cout << "\t -o <path> set the path for the output files [default ./]" << std::endl;
 }
 

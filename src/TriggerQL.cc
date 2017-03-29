@@ -208,13 +208,6 @@ void TriggerScan(TString rootname)
       
       event_time = cpu_startRunTime_vect[ev.run_id - first_run_nr] + ev.hepd_time/1e+2; //unit = ms
        
-      // if(i == 0                ||
-      // 	 temprun != ev.run_id    )
-      // {
-      // 	 cout << "run id = " << ev.run_id << "\nevent_time = " << event_time << endl;
-      // 	 temprun = ev.run_id;
-      // }
-      
       h_lost_triggers_vs_event->Fill(event_time, ev.lost_trigger);
       h_alive_time_vs_event->Fill(event_time, ev.alive_time*0.005);
       h_dead_time_vs_event->Fill(event_time, ev.dead_time*0.005);
@@ -232,25 +225,6 @@ void TriggerScan(TString rootname)
 	
    } //End of event loop
      
-     
-   /*
-     TCanvas *c_trigger_counter = new TCanvas("c_trigger_counter","",1200,600);
-     c_trigger_counter->Divide(2,2);
-     c_trigger_counter->cd(1);
-     gPad->SetGrid();
-     h_daq_board_counter_vs_time->SetMarkerStyle(20);
-     h_daq_board_counter_vs_time->Draw();
-  
-     c_trigger_counter->cd(2);
-     gPad->SetGrid();
-     h_pmt_board_counter_vs_time->SetMarkerStyle(20);
-     h_pmt_board_counter_vs_time->Draw();
-  
-     c_trigger_counter->cd(3);
-     gPad->SetGrid();
-     h_event_index_vs_time->SetMarkerStyle(20);
-     h_event_index_vs_time->Draw();
-   */
   
    TCanvas *c_lost_triggers = new TCanvas("c_lost_triggers","",1200,600);
    gPad->SetGrid();
@@ -258,13 +232,11 @@ void TriggerScan(TString rootname)
    h_lost_triggers_vs_event->Draw();
    c_lost_triggers->Print(outname);
  
-   //cout << "max alive: " << h_alive_time_vs_event->GetMaximum() << endl;
- 
    TCanvas *c_alive_dead_time = new TCanvas("c_alive_dead_time","",1200,600);
    c_alive_dead_time->Divide(2,1);
    c_alive_dead_time->cd(1);
    gPad->SetGrid();
-   //h_alive_time_vs_event->GetYaxis()->SetRangeUser(0, h_alive_time_vs_event->GetMaximum() + 0.10*h_alive_time_vs_event->GetMaximum());
+
    h_alive_time_vs_event->Draw();
    c_alive_dead_time->cd(2);
    gPad->SetGrid();
@@ -316,50 +288,34 @@ void TriggerScan(TString rootname)
 						     1200,600);
    c_rate_meter_trig_mask_7_9->Divide(3,1);
   
-   for(int p=6;p<9;p++) {
+   for(int p=6;p<9;p++)
+   {
       c_rate_meter_trig_mask_7_9->cd(p-5);
       gPad->SetGrid();
       h_rate_meter[p]->Draw();
-      /*
+      
       if(p==8)   
       {   
 	 outnameEnd = outname+")";
 	 c_rate_meter_trig_mask_7_9->Print(outnameEnd);
-      }
-      */   
+      }   
    }
-   c_rate_meter_trig_mask_7_9->Print(outname);
+   //c_rate_meter_trig_mask_7_9->Print(outname);
    
-   TCanvas* c_rate_meter_pmt_0_8 = new TCanvas("c_rate_meter_pmt_0_8"," ",1200,600);
-   c_rate_meter_pmt_0_8->Divide(3,3);
+   // TCanvas* c_rate_meter_pmt_0_8 = new TCanvas("c_rate_meter_pmt_0_8"," ",1200,600);
+   // c_rate_meter_pmt_0_8->Divide(3,3);
   
-   for(int p=0;p<9;p++) {
-      c_rate_meter_pmt_0_8->cd(p+1);
-      gPad->SetGrid();
-      h_pmt_rate_meter[p]->Draw();
+   // for(int p=0;p<9;p++)
+   // {
+   //    c_rate_meter_pmt_0_8->cd(p+1);
+   //    gPad->SetGrid();
+   //    h_pmt_rate_meter[p]->Draw();
   
-      if(p==8)   
-      {   
-	 outnameEnd = outname+")";
-	 c_rate_meter_pmt_0_8->Print(outnameEnd);
-      }
-      
-      
-   }
-      
- 
-         
-
-
-  
-
-
-
-
-
-
-
-
-
-
+   //    if(p==8)   
+   //    {   
+   // 	 outnameEnd = outname+")";
+   // 	 c_rate_meter_pmt_0_8->Print(outnameEnd);
+   //    }
+   // }
+   
 }
